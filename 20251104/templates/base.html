@@ -33,9 +33,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'listar_autos' %}">Listar Autos</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <p class="nav-link">Hola, {{ request.user.username }}</p>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-success nav-link text-white ms-2" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li>
+                            <p class="nav-link">Invitado</p>
+                        </li>
+                    {% endif %}
+                    
                 </ul>
             </div>
         </div>
