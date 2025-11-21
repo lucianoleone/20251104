@@ -1,11 +1,45 @@
 {% extends "base.html" %}
-{% block titulo %} Actualizar Auto {% endblock titulo %}
+{% block titulo %}Actualizar Auto{% endblock titulo %}
+
 {% block contenido %}
-    <h2>Actualizar Auto {{ auto.marca }} - {{ auto.modelo }}</h2>
-    <form method="POST" action="{% url 'actualizar' auto.id %}">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Actualizar" class= "btn btn-secondary">
-        <a href="{% url 'listar_autos' %}" class= "btn btn-secondary">Cancelar</a>
-    </form>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0">
+                <div class="card-body">
+
+                    <h3 class="text-center mb-4">
+                        Actualizar Auto  
+                        <span class="text-secondary">{{ auto.marca }} - {{ auto.modelo }}</span>
+                    </h3>
+
+                    <form method="POST" action="{% url 'actualizar' auto.id %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <!-- FORMULARIO ESTILIZADO -->
+                        <div class="mb-3">
+                            {{ form.as_p }}
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-primary px-4">
+                                Guardar cambios
+                            </button>
+
+                            <a href="{% url 'listar_autos' %}" class="btn btn-outline-secondary px-4">
+                                Cancelar
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 {% endblock contenido %}

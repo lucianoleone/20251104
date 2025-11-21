@@ -17,6 +17,14 @@
             <li class="list-group-item">
                 <strong>Modelo:</strong> {{ auto.modelo }}
             </li>
+
+            {% if auto.imagen %}
+            <li class="list-group-item">
+                <strong>Imagen:</strong><br>
+                <img src="{{ auto.imagen.url }}" alt="Imagen de {{ auto.marca }} - {{ auto.modelo }}" class="img-fluid mt-2" style="max-width: 300px;">
+            </li>
+            {% endif %}
+
         </ul>
 
         <a href="{% url 'listar_autos' %}" class="btn btn-outline-primary rounded-pill px-4">

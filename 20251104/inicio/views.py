@@ -20,12 +20,12 @@ def crear_auto(request):
     auto= None
     #Si viene por post sabemos que es el formulario creado
     if request.method == 'POST': 
-        formulario= CrearAuto(request.POST)
+        formulario= CrearAuto(request.POST, request.FILES)
         # Validamos el formulario
         if formulario.is_valid():
             info= formulario.cleaned_data #informacion limpia del formulario 
             # Cargamos la informacion del formulario en el modelo y por consiguiente en la BD  
-            auto= Auto(marca=info.get('marca'), modelo=info.get('modelo'))
+            auto= Auto(marca=info.get('marca'), modelo=info.get('modelo'), imagen=info.get('imagen'))
             auto.save()
             return redirect('listar_autos') #redirigimos a la vista listar autos
     # Sino se muestra el formulario vacio
@@ -39,7 +39,7 @@ def ver_auto(request, auto_id):
 
 class ActualizarAuto(UpdateView):
     model = Auto
-    fields = ['marca', 'modelo']
+    fields = ['marca', 'modelo', 'imagen']
     template_name = 'actualizar_auto.html'
     success_url = reverse_lazy('listar_autos')
 

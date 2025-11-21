@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block titulo %}Crear Auto{% endblock titulo %}
 {% block contenido %}
-    <form action="{% url 'crear_auto'  %}" method='POST'>
+    <form action="{% url 'crear_auto'  %}" method='POST', enctype="multipart/form-data">
         {% csrf_token %}
         {{ formulario}}
         <input type="submit"name="crear_auto" value="Crear">

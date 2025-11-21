@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf.urls.static import static
+from django.conf import settings
 # from inicio.views import inicio #nos traemos la vista que hemos creado para poder llamarla desde el path
 
 urlpatterns = [
@@ -27,3 +28,5 @@ urlpatterns = [
     
     
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
