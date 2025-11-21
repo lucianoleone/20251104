@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block titulo %} Actualizar Auto {% endblock titulo %}
+{% block contenido %}
+    <h2>Actualizar Auto {{ auto.marca }} - {{ auto.modelo }}</h2>
+    <form method="POST" action="{% url 'actualizar' auto.id %}">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Actualizar" class= "btn btn-secondary">
+        <a href="{% url 'listar_autos' %}" class= "btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock contenido %}

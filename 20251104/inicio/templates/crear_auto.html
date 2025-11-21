@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block titulo %}Crear Auto{% endblock titulo %}
+{% block contenido %}
+    <form action="{% url 'crear_auto'  %}" method='POST'>
+        {% csrf_token %}
+        {{ formulario}}
+        <input type="submit"name="crear_auto" value="Crear">
+    {% comment %} 
+
+        <label for="marca">Marca:</label>
+        <input type="text", name="marca" placeholder="Marca del auto">
+
+        <label for="modelo">Modelo:</label>
+        <input type="text", name="modelo" placeholder="Modelo del auto">
+        <button>Crear</button>
+        
+
+    </form> {% endcomment %}
+    
+{% endblock contenido %}

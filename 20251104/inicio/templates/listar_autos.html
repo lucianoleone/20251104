@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block titulo %}Lista de Autos{% endblock titulo %}
+
+{% block contenido %}
+
+<h2 class="mb-4">Listado de Autos</h2>
+
+<div class="list-group shadow-sm mb-4">
+
+    <!-- FORMULARIO DE BÚSQUEDA -->
+    <form action="{% url 'listar_autos' %}" method="get" class="p-3">
+
+        <div class="input-group">
+
+            <!-- Input generado por Django -->
+            {{ formulario.modelo }}
+
+            <!-- Botón con lupa -->
+            <button class="btn btn-secondary" type="submit">
+                <i class="bi bi-search"></i>
+            </button>
+
+        </div>
+
+    </form>
+
+    <!-- LISTA -->
+    {% for auto in listado_de_autos %}
+        <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+
+            <div class="fw-semibold text-dark">
+                {{ auto.marca }} - {{ auto.modelo }}
+            </div>
+
+            <div class="btn-group">
+                <a href="{% url 'ver_auto' auto.id %}" class="btn btn-outline-info btn-sm rounded-pill px-3">Ver</a>
+                <a href="{% url 'actualizar' auto.id %}" class="btn btn-outline-secondary btn-sm rounded-pill px-3">Editar</a>
+                <a href="{% url 'eliminar' auto.id %}" class="btn btn-outline-danger btn-sm rounded-pill px-3">Eliminar</a>
+            </div>
+
+        </div>
+    {% empty %}
+        <p class="text-muted p-3">No hay autos cargados.</p>
+    {% endfor %}
+
+</div>
+
+<a href="{% url 'crear_auto' %}" class="btn btn-success rounded-pill px-4">
+    ➕ Nuevo Auto
+</a>
+
+{% endblock contenido %}

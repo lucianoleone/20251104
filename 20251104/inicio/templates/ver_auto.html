@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block titulo %}Ver Auto{% endblock titulo %}
+
+{% block contenido %}
+
+<h2 class="mb-4">Detalles del Auto</h2>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+
+        <h4 class="card-title mb-3">{{ auto.marca }} - {{ auto.modelo }}</h4>
+
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item">
+                <strong>Marca:</strong> {{ auto.marca }}
+            </li>
+            <li class="list-group-item">
+                <strong>Modelo:</strong> {{ auto.modelo }}
+            </li>
+        </ul>
+
+        <a href="{% url 'listar_autos' %}" class="btn btn-outline-primary rounded-pill px-4">
+            ← Volver al listado
+        </a>
+
+    </div>
+</div>
+
+{% endblock contenido %}
