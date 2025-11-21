@@ -4,6 +4,8 @@ from inicio.models import Auto
 from inicio.forms import CrearAuto, BuscarAuto
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin #es una clase
+from django.contrib.auth.decorators import login_required #es un decorador
 # Create your views here.
 
 #esto con http response esta bueno para cosas chicas porque el codigo html se pone todo junto sin las facilidades de VSC
@@ -13,8 +15,8 @@ def inicio(request):
     return render(request, 'inicio.html')
 def otra(request):
     return render(request, 'otra.html')
-def crear_auto(request):
-    
+@login_required
+def crear_auto(request):  
     auto= None
     #Si viene por post sabemos que es el formulario creado
     if request.method == 'POST': 
@@ -41,7 +43,7 @@ class ActualizarAuto(UpdateView):
     template_name = 'actualizar_auto.html'
     success_url = reverse_lazy('listar_autos')
 
-class EliminarAuto(DeleteView):
+class EliminarAuto(LoginRequiredMixin, DeleteView):
     model = Auto
     template_name = 'eliminar_auto.html'
     success_url = reverse_lazy('listar_autos')    
