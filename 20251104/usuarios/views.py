@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 
 def login(request):
     formulario =AuthenticationForm()  # Aquí iría la lógica para manejar el formulario de login
-    return render(request, 'login.html')
+    return render(request, 'login.html',{formulario:'formulario'})
 def logout(request):
     return render(request, 'usuarios/logout.html')
 def register(request):
