@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # # en el path le ponemos un string con la direccion de la pagina, vacia es para el inicio
     path('', include('inicio.urls')),
+    path('usuarios/', include('usuarios.urls')),
     
     
 ]
